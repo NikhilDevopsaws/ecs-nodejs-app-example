@@ -18,7 +18,7 @@ phases:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push 432041220338.dkr.ecr.eu-west-2.amazonaws.com/432041220338.dkr.ecr.eu-west-2.amazonaws.com/demo-service-new:latest
+      - docker push 432041220338.dkr.ecr.eu-west-2.amazonaws.com/demo-service-new:latest
       - printf '{"ImageURI":"%s"}'432041220338.dkr.ecr.eu-west-2.amazonaws.com/432041220338.dkr.ecr.eu-west-2.amazonaws.com/demo-service-new:latest  > imageDetail.json
       - sed -i 's/<APP_NAME>/'demo-service-new'/g' appspec.yml taskdef.json
       - sed -i 's/<SERVICE_PORT>/'$SERVICE_PORT'/g' appspec.yml taskdef.json
