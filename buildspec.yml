@@ -13,7 +13,7 @@ phases:
       - echo Build started on `date`
       - echo Building the Docker image...          
       - docker build -t 432041220338.dkr.ecr.eu-west-2.amazonaws.com/demo-service-new:latest .
-      - docker tag 432041220338.dkr.ecr.eu-west-2.amazonaws.com/demo-service-new:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/432041220338.dkr.ecr.eu-west-2.amazonaws.com/demo-service-new:latest      
+      - docker tag 432041220338.dkr.ecr.eu-west-2.amazonaws.com/demo-service-new:latest 123456789012.dkr.ecr.eu-west-2.amazonaws.com/432041220338.dkr.ecr.eu-west-2.amazonaws.com/demo-service-new:latest   
   post_build:
     commands:
       - echo Build completed on `date`
