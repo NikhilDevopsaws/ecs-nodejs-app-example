@@ -18,13 +18,13 @@ phases:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/432041220338.dkr.ecr.eu-west-2.amazonaws.com/demo-service-new:latest
-      - printf '{"ImageURI":"%s"}' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/432041220338.dkr.ecr.eu-west-2.amazonaws.com/demo-service-new:latest  > imageDetail.json
-      - sed -i 's/<APP_NAME>/'$IMAGE_REPO_NAME'/g' appspec.yml taskdef.json
+      - docker push 432041220338.dkr.ecr.eu-west-2.amazonaws.com/432041220338.dkr.ecr.eu-west-2.amazonaws.com/demo-service-new:latest
+      - printf '{"ImageURI":"%s"}'432041220338.dkr.ecr.eu-west-2.amazonaws.com/432041220338.dkr.ecr.eu-west-2.amazonaws.com/demo-service-new:latest  > imageDetail.json
+      - sed -i 's/<APP_NAME>/'demo-service-new'/g' appspec.yml taskdef.json
       - sed -i 's/<SERVICE_PORT>/'$SERVICE_PORT'/g' appspec.yml taskdef.json
-      - sed -i 's/<AWS_ACCOUNT_ID>/'$AWS_ACCOUNT_ID'/g' taskdef.json
+      - sed -i 's/<AWS_ACCOUNT_ID>/'432041220338'/g' taskdef.json
       - sed -i 's/<MEMORY_RESV>/'$MEMORY_RESV'/g' taskdef.json
-      - sed -i 's/<IMAGE_NAME>/'$AWS_ACCOUNT_ID'\.dkr\.ecr\.'$AWS_DEFAULT_REGION'\.amazonaws.com\/'$IMAGE_REPO_NAME'\:'latest'/g' taskdef.json
+      - sed -i 's/<IMAGE_NAME>/'432041220338'\.dkr\.ecr\.'eu-west-2'\.amazonaws.com\/'demo-service-new'\:'latest'/g' taskdef.json
 artifacts:
   files: 
     - imageDetail.json
