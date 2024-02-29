@@ -1,4 +1,4 @@
-FROM node:10.16.0-jessie
+FROM node:14
 RUN apt-get update && apt-get install git -y && apt-get install imagemagick -y;
 
 WORKDIR /ecs-app
