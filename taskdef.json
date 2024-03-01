@@ -1,33 +1,23 @@
-{
+{ 
   "executionRoleArn": "arn:aws:iam::<AWS_ACCOUNT_ID>:role/<APP_NAME>_ecsTaskExecutionRole",
+  "family": "nodejs-app",
   "containerDefinitions": [
     {
-      "name": "demo-service-new",
-      "image": "demo-service-new",
+      "name": "nodejs-app",
+      "image": "your_ecr_repository_url:latest",
+      "cpu": 256,
+      "memory": 512,
       "essential": true,
-      "memoryReservation":100,
       "portMappings": [
         {
-          "hostPort": 0,
-          "protocol": "tcp",
-          "containerPort": 8080
-        }
-      ],
-      "environment": [
-        {
-          "name": "PORT",
-          "value": "8080"
-        },
-        {
-          "name": "APP_NAME",
-          "value": "demo-service-new"
+          "containerPort": 3000,
+          "hostPort": 3000
         }
       ]
     }
-  ],
+  ]
   "requiresCompatibilities": [
     "EC2"
   ],
-  "networkMode": null,
-  "family": "demo-service-new"
 }
+
