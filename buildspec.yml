@@ -21,9 +21,9 @@ phases:
       - docker push 432041220338.dkr.ecr.eu-west-2.amazonaws.com/demo-service-new:latest
       - printf '{"ImageURI":"%s"}'432041220338.dkr.ecr.eu-west-2.amazonaws.com/432041220338.dkr.ecr.eu-west-2.amazonaws.com/demo-service-new:latest  > imageDetail.json
       - sed -i 's/<APP_NAME>/'demo-service-new'/g' appspec.yml taskdef.json
-      - sed -i 's/<SERVICE_PORT>/'$SERVICE_PORT'/g' appspec.yml taskdef.json
+      - sed -i 's/<SERVICE_PORT>/'8080'/g' appspec.yml taskdef.json
       - sed -i 's/<AWS_ACCOUNT_ID>/'432041220338'/g' taskdef.json
-      - sed -i 's/<MEMORY_RESV>/'$MEMORY_RESV'/g' taskdef.json
+      - sed -i 's/<MEMORY_RESV>/'100'/g' taskdef.json
       - sed -i 's/<IMAGE_NAME>/'432041220338'\.dkr\.ecr\.'eu-west-2'\.amazonaws.com\/'demo-service-new'\:'latest'/g' taskdef.json
 artifacts:
   files: 
