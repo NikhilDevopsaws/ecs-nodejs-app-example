@@ -4,7 +4,7 @@
   "containerDefinitions": [
     {
       "name": "demo-service-new",
-      "image": "demo-service-new:latest",
+      "image": "432041220338.dkr.ecr.eu-west-2.amazonaws.com/demo-service-new:latest",
       "cpu": 256,
       "memory": 512,
       "essential": true,
