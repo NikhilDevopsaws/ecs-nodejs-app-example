@@ -1,18 +1,20 @@
+# Use the official Node.js image as the base image
 FROM node:14
-RUN apt-get update && apt-get install git -y && apt-get install imagemagick -y;
 
-WORKDIR /ecs-app
+# Set the working directory in the container
+WORKDIR /usr/src/app
 
+# Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
-COPY controller controller
-COPY server.js server.js
 
+# Install dependencies
 RUN npm install
-RUN chown -R node:node /ecs-app
 
-ENV NODE_ENV=production
-ENV ENV_ECS=true
-USER node
-EXPOSE 8080
+# Copy the rest of the application code to the working directory
+COPY . .
 
-ENTRYPOINT ["npm", "start"]
+# Expose port 3000 (or any port your Node.js application listens on)
+EXPOSE 3000
+
+# Define the command to start your Node.js application
+CMD ["node", "app.js"]
