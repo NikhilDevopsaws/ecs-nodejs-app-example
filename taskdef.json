@@ -1,23 +1,22 @@
-{ 
+{
+  "family": "my-nodejs-app-task",
   "executionRoleArn": "arn:aws:iam::432041220338:role/demo-service-new_ecsTaskExecutionRole",
-  "family": "demo-service-new",
   "containerDefinitions": [
     {
       "name": "demo-service-new",
-      "image": "432041220338.dkr.ecr.eu-west-2.amazonaws.com/demo-service-new:latest",
-      "cpu": 256,
+      "image": "432041220338.dkr.ecr.eu-west-2.amazonaws.com/demo-service-new:latest:latest",
+      "cpu": 512,
       "memory": 512,
       "essential": true,
       "portMappings": [
         {
           "containerPort": 3000,
-          "hostPort": 3000
+          "protocol": "tcp"
         }
       ]
     }
   ]
-  "requiresCompatibilities": [
+   "requiresCompatibilities": [
     "EC2"
   ],
 }
-
