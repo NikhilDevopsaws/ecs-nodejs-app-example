@@ -1,32 +1,27 @@
 version: 0.2
- 
+
 phases:
   install:
     runtime-versions:
       docker: 18
+      
   pre_build:
     commands:
-      - echo Logging in to Amazon ECR...
-      - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
+      - echo "Logging in to Amazon ECR..."
+      - aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin 432041220338.dkr.ecr.eu-west-2.amazonaws.com
+
   build:
     commands:
-      - echo Build started on `date`
-      - echo Building the Docker image...          
-      - docker build -t 432041220338.dkr.ecr.eu-west-2.amazonaws.com/demo-service-new:latest .
-      - docker tag 432041220338.dkr.ecr.eu-west-2.amazonaws.com/demo-service-new:latest 432041220338.dkr.ecr.eu-west-2.amazonaws.com/432041220338.dkr.ecr.eu-west-2.amazonaws.com/demo-service-new:latest   
+      - echo "Building the Docker image..."
+      - docker build -t demo-service-new:latest .
+      - echo "Pushing the Docker image to Amazon ECR..."
+      - docker push 432041220338.dkr.ecr.eu-west-2.amazonaws.com/demo-service-new:latest
+
   post_build:
     commands:
-      - echo Build completed on `date`
-      - echo Pushing the Docker image...
-      - docker push 432041220338.dkr.ecr.eu-west-2.amazonaws.com/demo-service-new:latest
-      - printf '{"ImageURI":"%s"}'432041220338.dkr.ecr.eu-west-2.amazonaws.com/432041220338.dkr.ecr.eu-west-2.amazonaws.com/demo-service-new:latest  > imageDetail.json
-      - sed -i 's/<APP_NAME>/'demo-service-new'/g' appspec.yml taskdef.json
-      - sed -i 's/<SERVICE_PORT>/'8080'/g' appspec.yml taskdef.json
-      - sed -i 's/<AWS_ACCOUNT_ID>/'432041220338'/g' taskdef.json
-      - sed -i 's/<MEMORY_RESV>/'100'/g' taskdef.json
-      - sed -i 's/<IMAGE_NAME>/'432041220338'\.dkr\.ecr\.'eu-west-2'\.amazonaws.com\/'demo-service-new'\:'latest'/g' taskdef.json
+      - echo "Cleaning up unused Docker images..."
+      - docker image prune -f
+
 artifacts:
-  files: 
-    - imageDetail.json
+  files:
     - appspec.yml
-    - taskdef.json
