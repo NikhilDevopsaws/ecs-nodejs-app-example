@@ -2,25 +2,25 @@
   "executionRoleArn": "arn:aws:iam::<AWS_ACCOUNT_ID>:role/<APP_NAME>_ecsTaskExecutionRole",
   "containerDefinitions": [
     {
-      "name": "<APP_NAME>",
-      "image": "<IMAGE_NAME>",
+      "name": "demo-service-new",
+      "image": "demo-service-new",
       "essential": true,
-      "memoryReservation": <MEMORY_RESV>,
+      "memoryReservation":100,
       "portMappings": [
         {
           "hostPort": 0,
           "protocol": "tcp",
-          "containerPort": <SERVICE_PORT>
+          "containerPort": 8080
         }
       ],
       "environment": [
         {
           "name": "PORT",
-          "value": "<SERVICE_PORT>"
+          "value": "8080"
         },
         {
           "name": "APP_NAME",
-          "value": "<APP_NAME>"
+          "value": "demo-service-new"
         }
       ]
     }
@@ -29,5 +29,5 @@
     "EC2"
   ],
   "networkMode": null,
-  "family": "<APP_NAME>"
+  "family": "demo-service-new"
 }
