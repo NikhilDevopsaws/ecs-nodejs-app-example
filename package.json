@@ -1,5 +1,5 @@
 {
-  "name": "nodejs-app",
+  "name": "demo-service-new",
   "version": "1.0.0",
   "description": "A simple Node.js application running on ECS",
   "main": "app.js",
